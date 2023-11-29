@@ -68,9 +68,11 @@ export const ScratchCard = () => {
     })
     .onUpdate(g => {
       const newPaths = [...paths];
-      const path = newPaths[newPaths.length - 1]; // Gets the last added path
-      path.lineTo(g.x, g.y); // Makes a line to the user's current gesture position
-      setPaths(newPaths);
+      if (newPaths.length > 0) {
+        const path = newPaths[newPaths.length - 1]; // Gets the last added path
+        path.lineTo(g.x, g.y); // Makes a line to the user's current gesture position
+        setPaths(newPaths);
+      }
     })
     .onEnd(() => {
       const pathProperties = new svgPathProperties(
